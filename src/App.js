@@ -2,7 +2,11 @@ import {useEffect,useState,useCallback} from 'react';
 
 import {useSelector} from 'react-redux';
 
+import {HashRouter as Router,Switch,Route} from 'react-router-dom';
+
 import store from './models/index';
+
+import Login from './containers/Login';
 
 
 
@@ -29,15 +33,11 @@ function App() {
   },[]);
 
   return (
-    <div className="App">
-     
-      <h2>目前的值是：{count}</h2>
+    <Switch>
 
-      <button onClick={addCount}>+</button>
+      <Route path={'/'} component={Login}></Route>    
 
-      <button onClick={subCount}>-</button>
-
-    </div>
+    </Switch>
   );
 }
 
