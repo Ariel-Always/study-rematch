@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import {useEffect,useState,useCallback} from 'react';
+
+import {useSelector} from 'react-redux';
+
+import store from './models/index';
+
+
 
 function App() {
+
+  const state = useSelector(state=>state);
+
+  const {count} = state;
+
+  const {dispatch} = store;
+
+  console.log(state);
+
+  const addCount = useCallback(()=>{
+
+    dispatch.count.addCount(1)
+
+  },[]);
+
+  const subCount = useCallback(()=>{
+
+    dispatch.count.subCount(1)
+
+  },[]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     
+      <h2>目前的值是：{count}</h2>
+
+      <button onClick={addCount}>+</button>
+
+      <button onClick={subCount}>-</button>
+
     </div>
   );
 }
+
+
 
 export default App;
